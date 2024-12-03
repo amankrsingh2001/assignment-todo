@@ -1,1 +1,1 @@
-export const BASE_URL = "assignment-todo-production.up.railway.app/api/v1"
+export const BASE_URL = "https://assignment-todo-production.up.railway.app/api/v1"
