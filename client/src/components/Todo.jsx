@@ -3,6 +3,7 @@ import Card from "./Card";
 import MakeTodo from "./MakeTodo";
 import axios from "axios";
 import { BASE_URL } from "../api/api";
+import Navbar from "./Navbar";
 
 const Todo = () => {
   const [showInput, setShowInput] = useState(false);
@@ -55,22 +56,25 @@ const Todo = () => {
 
   return (
     loading ?  <div className="text-black text-lg text-center">This is Loading...</div>:
-    <div className="min-h-screen bg-gray-500 p-6 flex flex-col">
+<>
+
+    <Navbar/>
+    <div className="min-h-screen bg-white p-6 flex flex-col">
       <button
         onClick={showInputHandler}
-        className="mt-6 self-end border-2 border-white bg-white text-black rounded-lg p-2 shadow-md hover:bg-gray-200 transition"
+        className=" self-end text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
       >
         NEW +
       </button>
 
-      <div>
-        <button className="bg-white text-black rounded-md p-2 mr-2" onClick={(e)=>handleFilterTodos('Active')}>Active</button>
-        <button className="bg-white text-black rounded-md p-2 mr-2"  onClick={(e)=>handleFilterTodos('Completed')} >Completed</button>
-        <button className="bg-white text-black rounded-md p-2 mr-2"  onClick={(e)=>handleFilterTodos('Uncompleted')}>Uncompleted</button>
-        <button className="bg-white text-black rounded-md p-2 mr-2"  onClick={handleRemoveFilter}>Remove filter</button>
+      <div className="px-10">
 
+        <button type="button" className="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"  onClick={(e)=>handleFilterTodos('Completed')}>Completed</button>
+        <button type="button"  onClick={(e)=>handleFilterTodos('Uncompleted')} className="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Uncompleted</button>
+      <button onClick={(e)=>handleFilterTodos('Active')} type="button" className="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:focus:ring-yellow-900">Active</button>
+        <button className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" onClick={handleRemoveFilter}>Remove filter</button>
       </div>
-      <div className=" w-full  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className=" w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
         {
             todoValue.length <= 0 ?<p> No todo exist </p>:todoValue.map((todo)=>{
                 return (<Card key={todo._id} id={todo._id} title={todo.title} description ={todo.description} status={todo.status} setTodoValue={setTodoValue} todoValue={todoValue}/>)
@@ -82,6 +86,7 @@ const Todo = () => {
 
       </div>
     </div>
+    </>
   );
 };
 

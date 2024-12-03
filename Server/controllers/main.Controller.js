@@ -1,6 +1,6 @@
-
 import { User } from "../model/userSchema.js"
 import { Todo } from "../model/todoSchema.js"
+
 
 export const createUser = async(req, res) =>{
     const {name} = req.body
@@ -82,7 +82,6 @@ export const getTodo = async(req, res) =>{
 
 export const updateStatus = async(req, res)=>{
     const {id, statusValue} = req.body
-    console.log(statusValue, id)
     try {
         const todo = await Todo.findByIdAndUpdate({_id:id},{
             status:statusValue
@@ -94,8 +93,6 @@ export const updateStatus = async(req, res)=>{
                 messagee:"Falied to update the status of todo"
             })
         }
-
-        console.log(todo)
 
         return res.status(200).json({
             success:true,
@@ -129,7 +126,6 @@ export const deleteTodo = async(req, res) =>{
                 message:"failed to delete todo"
             })           
         }
-
             return res.status(200).json({
                 success:true,
                 message:"Deleted Todo successfully"
@@ -138,6 +134,9 @@ export const deleteTodo = async(req, res) =>{
 
 
     } catch (error) {
-        
+            return res.status(500).json({
+                success:false,
+                message:"Something went wrong"
+            })
     }
 }

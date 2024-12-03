@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { MdDelete } from "react-icons/md";
+import { FaRegTrashCan } from "react-icons/fa6";
 import { BASE_URL } from "../api/api";
 
 
@@ -45,9 +45,11 @@ const Card = ({ title, description, status, id, setTodoValue, todoValue }) => {
   return loading ? (
     <div></div>
   ) : (
-    <div className=" w-[80%] mx-auto  mt-8 p-6 bg-gradient-to-br flex flex-col gap-4 from-[#1B1833] to-[#1A1A1D] text-white shadow-lg rounded-xl border border-gray-700 ">
+    <div className="max-w-md w-full mx-auto shadow-2xl  mt-8 p-6  flex flex-col gap-1 bg-[#FFFFFF] text-black  rounded-3xl border-[1px] border-gray-500/50 ">
+      <div className="flex justify-between items-center gap-2 mb-5">
+
       <p
-        className={`text-sm w-fit mb-4 capitalize inline-block px-3 py-1 rounded-full ${
+        className={`text-sm w-fit  capitalize inline-block px-3 py-1 rounded-full ${
           statusValue === "Completed"
             ? "text-green-400 bg-green-500/25"
             : statusValue === "Uncompleted"
@@ -55,23 +57,15 @@ const Card = ({ title, description, status, id, setTodoValue, todoValue }) => {
             : "text-yellow-500 bg-yellow-600/25"
         } text-gray-100`}
       >
+        
         {statusValue}
-      </p>
-      <h3 className="text-2xl flex justify-between items-center gap-2 font-semibold mb-4 text-wrap">
-        {title}
-        <div className="cursor-pointer">
-          <MdDelete
-            className="text-2xl hover:text-red-500 transition-colors"
-            onClick={deleteTodoHandler}
-          />
-        </div>
-      </h3>
-      <p className="text-base mb-3 text-gray-200 text-wrap">{description}</p>
 
+        
+      </p>
       <select
         value={statusValue}
         onChange={onchangeHandler}
-        className={`w-full  p-2 text-gray-800 bg-gray-100 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ${
+        className={`w-fit py-1 px-2  text-gray-800 bg-gray-100 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ${
           loading ? "opacity-50 cursor-not-allowed" : ""
         }`}
       >
@@ -79,6 +73,20 @@ const Card = ({ title, description, status, id, setTodoValue, todoValue }) => {
         <option value={"Completed"}>Completed</option>
         <option value={"Uncompleted"}>Uncompleted</option>
       </select>
+      </div>
+     
+      <h3 className="text-2xl flex justify-between items-center gap-1 font-semibold  text-wrap">
+        {title}
+        <div className="cursor-pointer">
+          <FaRegTrashCan
+            className="text-2xl text-orange-600 transition-colors"
+            onClick={deleteTodoHandler}
+          />
+        </div>
+      </h3>
+      <p className="text-base  text-wrap">{description}</p>
+
+     
     </div>
   );
 };

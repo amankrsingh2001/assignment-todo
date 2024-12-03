@@ -28,11 +28,13 @@ const MakeTodo = ({setShowInput, setTodoValue}) => {
   
 
   return (
-    <div className="fixed inset-1 z-[1000] !mt-0 grid place-items-center overflow-auto bg-white bg-opacity-10 backdrop-blur-sm">
-      <form onSubmit={submitHandler} className="w-full flex justify-center" >
-        <div className="w-[32%]  rounded-lg bg-[#F6D6D6] border border-richblack-400 bg-richblack-800 p-6">
-          <p className="text-2xl font-semibold text-richblack-5 font-serif">
-            Create your Todo
+    <div onClick={()=>setShowInput(false)} className="fixed inset-1 z-[1000] !mt-0 grid place-items-center overflow-auto bg-white bg-opacity-10 backdrop-blur-sm">
+      <form onSubmit={submitHandler} className="w-full flex justify-center" onClick={(e)=>{
+        e.stopPropagation()
+      }} >
+        <div className="w-[32%]  rounded-lg bg-white border border-richblack-400 bg-richblack-800 p-6">
+          <p className="text-2xl  text-richblack-5 font-medium">
+            Create your todo
           </p>
 
           <div className="flex flex-col gap-4">
@@ -41,7 +43,7 @@ const MakeTodo = ({setShowInput, setTodoValue}) => {
               <input
               onChange={changeHander}
               name = "title"
-                className="p-2 rounded-md"
+                className="p-2 outline-black border-[2px] border-gray-400 rounded-md"
                 type="text"
                 placeholder="Enter the title"
               />
@@ -51,7 +53,7 @@ const MakeTodo = ({setShowInput, setTodoValue}) => {
               <textarea
               onChange={changeHander}
               name = "description"
-                className="p-2 rounded-md"
+                className="p-2 outline-black  border-[2px] border-gray-400  rounded-md"
                 type="text"
                 placeholder="Enter your Description"
               />
