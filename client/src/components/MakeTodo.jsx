@@ -29,10 +29,10 @@ const MakeTodo = ({setShowInput, setTodoValue}) => {
 
   return (
     <div onClick={()=>setShowInput(false)} className="fixed inset-1 z-[1000] !mt-0 grid place-items-center overflow-auto bg-white bg-opacity-10 backdrop-blur-sm">
-      <form onSubmit={submitHandler} className="w-full flex justify-center" onClick={(e)=>{
+      <form onSubmit={submitHandler} className="w-full flex  justify-center" onClick={(e)=>{
         e.stopPropagation()
       }} >
-        <div className="w-[32%]  rounded-lg bg-white border border-richblack-400 bg-richblack-800 p-6">
+        <div className="w-[32%]  rounded-lg bg-white border shadow-lg border-richblack-400 bg-richblack-800 p-6">
           <p className="text-2xl  text-richblack-5 font-medium">
             Create your todo
           </p>
@@ -69,7 +69,7 @@ const MakeTodo = ({setShowInput, setTodoValue}) => {
 
         </div>
       </form>
-      <IoCloseCircleSharp data-testid="close-icon"  className="cursor-pointer text-4xl text-black absolute  right-12 top-12  " onClick={()=>setShowInput(false)}/>
+      <IoCloseCircleSharp data-testid="close-icon"  className="cursor-pointer text-4xl text-gray-400  shadow-2xl rounded-full absolute  right-12 top-12  " onClick={()=>setShowInput(false)}/>
     </div>
   );
 };
